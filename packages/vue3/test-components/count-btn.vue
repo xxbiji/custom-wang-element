@@ -1,0 +1,54 @@
+<template>
+  <div>
+    <button data-test="count-btn" class="count-btn" :disabled="disabled" @click="sub">-</button>
+    <span data-test="count" style="padding: 0 10px">{{ count }}</span>
+    <button data-test="count-btn" class="count-btn" :disabled="disabled" @click="add">+</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CountBtn',
+  inheritAttrs: false,
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    defaultValue: {
+      type: String,
+      default: ''
+    },
+    updateValue: {
+      type: Function,
+      default() {}
+    }
+  },
+  data() {
+    return {
+      count: parseInt(this.defaultValue)
+    }
+  },
+  watch: {
+    count(count) {
+      if (typeof this.updateValue === 'function') {
+        this.updateValue(count + '')
+      }
+    }
+  },
+  methods: {
+    sub() {
+      this.count -= 1
+    },
+    add() {
+      this.count += 1
+    }
+  }
+}
+</script>
+
+<style>
+.count-btn {
+  width: 25px;
+}
+</style>
