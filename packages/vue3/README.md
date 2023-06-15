@@ -41,4 +41,4 @@ import { customWangElement } from '@custom-wang-element/core'
 customWangElement('countbtn', '0')
 ```
 
-具体使用案例可以[点击这个]具体使用案例可以[点击这个](https://github.com/xxbiji/custom-wang-element/tree/master/packages/vue3/example)查看查看
+具体使用案例可以[点击这个](https://github.com/xxbiji/custom-wang-element/tree/master/packages/vue3/example)查看查看
