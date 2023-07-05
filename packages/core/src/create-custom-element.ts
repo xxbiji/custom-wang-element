@@ -12,7 +12,7 @@ export type CmpUpdateOptions = {
 }
 
 export interface ICmp {
-  getEl(): (Element | null)
+  getEl(): Element | null
   unmount(): void
   update(options: CmpUpdateOptions): void
 }
@@ -22,7 +22,7 @@ export type CmpCreatorOptions = CmpUpdateOptions & {
   updateValue: (arg: string) => void
 }
 
-export type CmpCreator = (options: CmpCreatorOptions) => ICmp
+export type CmpCreator = (options: CmpCreatorOptions) => (ICmp | Promise<ICmp>)
 
 const elMap = new WeakMap<HTMLElement, ICmp>();
 
@@ -102,7 +102,7 @@ export function createCustomElement(tag: string, cmpCreator: CmpCreator, options
                   return;
                 }
                 const el = vnode.elm as HTMLElement;
-                const instance = cmpCreator({
+                Promise.resolve(cmpCreator({
                   disabled: editor.isDisabled(),
                   selected: DomEditor.isNodeSelected(editor, elem),
                   defaultValue: value,
@@ -114,13 +114,18 @@ export function createCustomElement(tag: string, cmpCreator: CmpCreator, options
                       at: location
                     });
                   }
+                })).then(instance => {
+                  el.innerHTML = '';
+                  const dom = instance.getEl();
+                  if (dom) {
+                    el.appendChild(dom);
+                  }
+                  elMap.set(el, instance);
+                }, err => {
+                  if (process.env.NODE_ENV !== 'production') {
+                    console.warn('cmpCreator call error: ', err);
+                  }
                 });
-                el.innerHTML = '';
-                const dom = instance.getEl();
-                if (dom) {
-                  el.appendChild(dom);
-                }
-                elMap.set(el, instance);
               },
               destroy(vnode) {
                 if (!vnode.elm) {

@@ -124,4 +124,30 @@ describe('test createCustomElement', () => {
     }
     expect((cmp as TestCmp).value).toBe('12345');
   });
+
+  
+  test('test async creator insert', async () => {
+    let cmp: TestCmp | null = null;
+    const module = createCustomElement('simple', async (options) => {
+      cmp = new TestCmp(options);
+      return cmp;
+    },);
+
+    const editor = module.editorPlugin(createEditor());
+    const elem = customWangElement('simple', '12345');
+
+    const vnode = module.renderElems[0].renderElem(elem, [], editor);
+    
+    const patch = init([]);
+    
+    const fragment = document.createElement('div');
+
+    patch(fragment, vnode);
+
+    if (!cmp) {
+      expect(false).toBe(true);
+      return;
+    }
+    expect((cmp as TestCmp).value).toBe('12345');
+  });
 });

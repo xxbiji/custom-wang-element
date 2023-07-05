@@ -1,11 +1,13 @@
 {
   "name": "@custom-wang-element/core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "一个快速定义wangEditor自定义element的库",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/src/index.d.ts",
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "test": "jest",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
