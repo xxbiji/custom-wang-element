@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": ".",
+		},
+		{
+			"path": "./packages/core",
+		},
+		{
+			"path": "./packages/common",
+		},
+		{
+			"path": "./packages/vue-tools",
+		},
+		{
+			"path": "./packages/vue2",
+		},
+		{
+			"path": "./packages/vue3",
+		},
+	],
+	"settings": {
+		"jest.disabledWorkspaceFolders": [
+			"custom-wang-element",
+			"common"
+		]
+	}
+}
