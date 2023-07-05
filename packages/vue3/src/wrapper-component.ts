@@ -1,5 +1,5 @@
 import { CmpCreatorOptions, CmpUpdateOptions } from '@custom-wang-element/core';
-import { defineComponent, h, markRaw, ref } from 'vue';
+import { defineComponent, h, markRaw, ref, toRef, toRefs } from 'vue';
 
 export interface WrapperMethods {
   update(options: CmpUpdateOptions): void

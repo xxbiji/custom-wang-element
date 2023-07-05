@@ -3,6 +3,7 @@
     <div>
       <button @click="disableEditor">切换编辑器状态</button>
     </div>
+    <WangCustomElementMounter />
     <Toolbar
       style="border-bottom: 1px solid #ccc"
       :editor="editor"
@@ -23,10 +24,16 @@
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import '@wangeditor/editor/dist/css/style.css'
 import './count-btn-register.ts'
+import { WangCustomElementMounter} from '../src/index'
 
 export default {
   name: 'Index',
-  components: { Editor, Toolbar },
+  components: { Editor, Toolbar, WangCustomElementMounter },
+  provide() {
+    return {
+      globalData: 'parentData'
+    }
+  },
   data() {
     return {
       editor: null,

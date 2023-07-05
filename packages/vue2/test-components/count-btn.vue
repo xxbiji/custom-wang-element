@@ -1,7 +1,8 @@
 <template>
   <div>
+    <span data-test="globalData" v-if="globalData">{{ globalData }}:</span>
     <button class="count-btn" :disabled="disabled" @click="sub">-</button>
-    <span style="padding: 0 10px">{{ count }}</span>
+    <span data-test="count" style="padding: 0 10px">{{ count }}</span>
     <button class="count-btn" :disabled="disabled" @click="add">+</button>
   </div>
 </template>
@@ -10,6 +11,14 @@
 export default {
   name: 'CountBtn',
   inheritAttrs: false,
+  inject: {
+    globalData: {
+      from: 'globalData',
+      default() {
+        return ''
+      }
+    }
+  },
   props: {
     disabled: {
       type: Boolean,

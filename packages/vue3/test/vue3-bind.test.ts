@@ -1,21 +1,19 @@
-import { vueCmpCreator } from '@/vue3-bind';
+import { defaultICmpCreator } from '@/vue3-bind';
 import CountBtn from '../test-components/count-btn.vue';
 
-describe('vueCmpCreator', () => {
+describe('defaultICmpCreator', () => {
   test('test getEl', () => {
-    const creator = vueCmpCreator(CountBtn);
-    const cmp = creator({
+    const cmp = defaultICmpCreator(CountBtn, {
       selected: false,
       defaultValue: '20',
       disabled: false,
       updateValue() {}
     });
-    expect(cmp.getEl()?.querySelector('span')?.lastChild?.nodeValue).toBe('20');
+    expect(cmp.getEl()?.querySelector('[data-test=count]')?.lastChild?.nodeValue).toBe('20');
   });
 
   test('test unmount', () => {
-    const creator = vueCmpCreator(CountBtn);
-    const cmp = creator({
+    const cmp = defaultICmpCreator(CountBtn, {
       selected: false,
       defaultValue: '20',
       disabled: false,
@@ -26,8 +24,7 @@ describe('vueCmpCreator', () => {
   });
 
   test('test update', async () => {
-    const creator = vueCmpCreator(CountBtn);
-    const cmp = creator({
+    const cmp = defaultICmpCreator(CountBtn, {
       selected: false,
       defaultValue: '20',
       disabled: false,
@@ -38,16 +35,7 @@ describe('vueCmpCreator', () => {
       selected: false,
       disabled: true
     });
-    await timeout(); 
+    await Promise.resolve(); 
     expect(cmp.getEl()?.querySelector('button')?.disabled).toBe(true);
   });
 });
-
-
-function timeout(time: number = 200): Promise<void> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-}
