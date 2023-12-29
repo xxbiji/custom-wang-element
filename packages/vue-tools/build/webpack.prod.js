@@ -23,12 +23,6 @@ module.exports = merge(common, {
       amd: '@wangeditor/editor',
       root: 'wangEditor'
     },
-    '@custom-wang-element/common': {
-      commonjs: '@custom-wang-element/common',
-      commonjs2: '@custom-wang-element/common',
-      amd: '@custom-wang-element/common',
-      root: 'CustomWangElementCommon'
-    },
     '@custom-wang-element/core': {
       commonjs: '@custom-wang-element/core',
       commonjs2: '@custom-wang-element/core',

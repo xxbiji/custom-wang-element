@@ -1,6 +1,6 @@
 {
   "name": "@custom-wang-element/vue-tools",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "",
   "private": "true",
   "main": "dist/index.js",
@@ -27,6 +27,7 @@
     "@types/node": "^20.3.1",
     "@wangeditor/editor": "^5.1.23",
     "babel-jest": "^29.5.0",
+    "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "html-webpack-plugin": "^5.5.1",
@@ -43,7 +44,6 @@
     "webpack-merge": "^5.9.0"
   },
   "peerDependencies": {
-    "@custom-wang-element/common": "workspace:*",
     "@custom-wang-element/core": "workspace:*",
     "@wangeditor/editor": "^5.1.23",
     "snabbdom": "^3.5.1"
